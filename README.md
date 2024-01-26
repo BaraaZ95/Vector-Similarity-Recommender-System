@@ -1,13 +1,19 @@
-# recommender_api
+# Steam Games Vector DB Recommender
 
-This project was generated using fastapi_template.
+## Introduction
+This project uses [Milvus](https://milvus.io/) as a vector db to store the video games' similarity, [FastAPI](https://fastapi.tiangolo.com/) for the backend and [streamlit](https://streamlit.io/) for the frontend.
+
+
+## Prerequisites
+
+- Download any data of your choosing from Kaggle such as this [steam games](https://www.kaggle.com/datasets/fronkongames/steam-games-dataset).
+
+- A Milvus API.
 
 ## Poetry
 
 This project uses poetry. It's a modern dependency management
 tool.
-
-To run the project use this set of commands:
 
 ```bash
 poetry install
@@ -46,24 +52,23 @@ docker-compose -f deploy/docker-compose.yml --project-directory . build
 ## Project structure
 
 ```bash
-$ tree "recommender_api"
+$ tree "Steam Games Recommender"
+recommender_frontend
 recommender_api
-├── conftest.py  # Fixtures for all tests.
-├── __main__.py  # Startup script. Starts uvicorn.
-├── services  # Package for different external services such as rabbit or redis etc.
-├── settings.py  # Main configuration settings for project.
-├── static  # Static content.
-├── tests  # Tests for project.
-└── web  # Package contains web server. Handlers, startup config.
-    ├── api  # Package with all handlers.
-    │   └── router.py  # Main router.
-    ├── application.py  # FastAPI application configuration.
-    └── lifetime.py  # Contains actions to perform on startup and shutdown.
+├── conftest.py  
+├── __main__.py  
+├── services 
+├── settings.py  
+├── static  
+├── tests  
+└── web 
+    ├── api 
+    │   └── router.py 
+    ├── application.py  
+    └── lifetime.py  
 ```
 
 ## Configuration
-
-This application can be configured with environment variables.
 
 You can create `.env` file in the root directory and place all
 environment variables here.
@@ -80,43 +85,18 @@ An example of .env file:
 RECOMMENDER_API_RELOAD="True"
 RECOMMENDER_API_PORT="8000"
 RECOMMENDER_API_ENVIRONMENT="dev"
+RECOMMENDER_API_MILVUS_URI = "...zillizcloud.com"
+RECOMMENDER_API_MILVUS_TOKEN = "fake-token-text"
+RECOMMENDER_API_COLLECTION_NAME =  "fake-collection-name"
 ```
 
 You can read more about BaseSettings class here: https://pydantic-docs.helpmanual.io/usage/settings/
 
-## Pre-commit
-
-To install pre-commit simply run inside the shell:
-```bash
-pre-commit install
-```
-
-pre-commit is very useful to check your code before publishing it.
-It's configured using .pre-commit-config.yaml file.
-
-By default it runs:
-* black (formats your code);
-* mypy (validates types);
-* isort (sorts imports in all files);
-* flake8 (spots possible bugs);
-
-
-You can read more about pre-commit here: https://pre-commit.com/
-
 
 ## Running tests
 
-If you want to run it in docker, simply run:
-
-```bash
-docker-compose -f deploy/docker-compose.yml -f deploy/docker-compose.dev.yml --project-directory . run --build --rm api pytest -vv .
-docker-compose -f deploy/docker-compose.yml -f deploy/docker-compose.dev.yml --project-directory . down
-```
-
 For running tests on your local machine.
 
-
-2. Run the pytest.
 ```bash
-pytest -vv .
+pytest -vv . -p no:warnings
 ```
