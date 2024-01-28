@@ -6,9 +6,16 @@ This project uses [Milvus](https://milvus.io/) as a vector db to store the video
 
 ## Prerequisites
 
-- Download any data of your choosing from Kaggle such as this [steam games](https://www.kaggle.com/datasets/fronkongames/steam-games-dataset).
+- A Kaagle API to download the data
 
-- A Milvus API.
+- A Milvus API to upload the data
+
+## Getting Started
+
+To get started, simply download the Steam Games dataset from [kaggle](https://www.kaggle.com/datasets/fronkongames/steam-games-dataset) in the notebook at the Notebook folder.
+
+The Notebook has all the code to get started and uploading the data to Milvus.
+
 
 ## Poetry
 
